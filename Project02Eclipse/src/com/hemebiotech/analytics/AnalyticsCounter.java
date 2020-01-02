@@ -1,7 +1,5 @@
 package com.hemebiotech.analytics;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -11,31 +9,10 @@ public class AnalyticsCounter {
 	private static int pupilCount = 0;		// initialize to 0
 	
 	public static void main(String args[]) {
-		// Read symptom from an external file
-		try {
-			BufferedReader reader = new BufferedReader (new FileReader("Project02Eclipse/symptoms.txt"));
-			String line = reader.readLine();
-			while (line != null) {
-				System.out.println("symptom from file: " + line);
-				
-				//Counting the number of occurrence of some symptoms
-				if (line.equals("headache")) {
-					headacheCount++;
-				}
-				else if (line.equals("rash")) {
-					rashCount++;
-				}
-				else if (line.contains("pupils")) {
-					pupilCount++;
-				}
-
-				line = reader.readLine();	// get another symptom
-			}
-			reader.close();
-		} catch (IOException e) {
-			System.out.println("Ooops, an error occured");
-			e.printStackTrace();
-		}
+		
+		System.out.println("Welcome to Analytics Counter\n\n");
+		ReadSymptomDataFromFile readSymptom = new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
+		System.out.println("Full symptoms's list:\n\n"+ readSymptom.getSymptoms()+ "\n\n");
 		
 		// Generate a new output file
 		try {
